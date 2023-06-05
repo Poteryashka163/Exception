@@ -1,9 +1,20 @@
 
+import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
-        System.out.printf("Hello and welcome!");
-        for (int i = 1; i <= 5; i++) {
-            System.out.println("i = " + i);
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Введите Логин: ");
+        String login = scanner.nextLine();
+        System.out.print("Введите Пароль: ");
+        String password = scanner.nextLine();
+        System.out.print("Введите Подтверждение пароля: ");
+        String confirmPassword = scanner.nextLine();
+        scanner.close();
+
+        try {
+            CheckCredentials.checkCredentials(login,password,confirmPassword);
+        } catch (WrongLoginException | WrongPasswordException e) {
+            System.out.println(e.getMessage());
         }
     }
 }
